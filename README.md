@@ -1,193 +1,234 @@
-# Team Task
+# Team Task 🚀
 
-Sistema de Gestión Colaborativa de Tareas para Equipos
+Sistema integral de gestión colaborativa de tareas para equipos académicos, startups y pequeñas empresas.
 
----
+## ✨ Características Principales
 
-## Descripción
+- ✅ **Asignación Inteligente**: Considera habilidades, disponibilidad y carga actual
+- ✅ **Métricas Reales**: Visualiza porcentaje de participación de cada miembro
+- ✅ **Comunicación Integrada**: Chat y comentarios centralizados en plataforma
+- ✅ **Notificaciones Automáticas**: Recordatorios en tiempo real (máx 5 segundos)
+- ✅ **Adjuntos Organizados**: PDF, Word, Excel, imágenes, PowerPoint, videos, audios
+- ✅ **Historial Auditable**: Quién hizo qué y cuándo (audit trail completo)
+- ✅ **Reportes Automáticos**: Análisis diarios y semanales
+- ✅ **Role-based Access**: Permisos por rol (Líder, Miembro, Admin)
 
-Team Task es una plataforma diseñada para equipos universitarios, emprendimientos y pequeñas empresas que necesitan organizar, distribuir y medir el trabajo de forma equitativa.
+## 🛠 Tech Stack
 
-**Concepto Principal:**
+### Frontend
+- **React 18+** con TypeScript
+- **Vite** (bundler extremadamente rápido)
+- **Tailwind CSS** (utility-first CSS)
+- **Zustand/Redux** (state management)
+- **Axios** (HTTP client)
+- **Socket.io-client** (real-time communication)
 
-> Equidad ≠ Igualdad
-> 
-> Distribuir trabajo considerando habilidades, complejidad y disponibilidad de cada miembro.
+### Backend
+- **Node.js** runtime
+- **Express.js** (web framework)
+- **TypeScript** (static typing)
+- **PostgreSQL** (base de datos robusta)
+- **Prisma ORM** (database toolkit)
+- **Redis** (caché y sesiones)
+- **Socket.io** (real-time messaging)
+- **JWT** (autenticación)
 
----
+### DevOps & Testing
+- **Docker** + **Docker-Compose** (containerización)
+- **GitHub Actions** (CI/CD automatizado)
+- **Vitest** (testing framework)
+- **ESLint** + **Prettier** (code quality)
 
-## Componentes del Sistema
+## 📋 Requisitos Previos
 
-El sistema se estructura en cinco pilares fundamentales:
+- **Node.js** 18.0.0 o superior
+- **npm** 8.0.0 o superior
+- **PostgreSQL** 12 o superior
+- **Redis** 6 o superior
+- **Docker** (opcional, para desarrollo con contenedores)
 
-1. **Asignar** - Distribución inteligente de tareas considerando competencias disponibles
-2. **Calendarizar** - Programación flexible con deadlines definidos
-3. **Notificar** - Alertas en tiempo real (máximo 5 segundos)
-4. **Medir** - Métricas detalladas de participación
-5. **Reportar** - Análisis exportables a PDF y Excel
+## 🚀 Quick Start
 
----
-
-## Funcionalidades
-
-- Asignación inteligente de tareas basada en skills y disponibilidad
-- Gestión de proyectos colaborativa en tiempo real
-- Registro y monitoreo de competencias por miembro
-- Notificaciones instantáneas y chat integrado
-- Análisis de carga de trabajo y balance de equipo
-- Reportes automáticos (diarios y semanales)
-- Auditoría completa de cambios
-- Interfaz responsive para web y dispositivos móviles
-
----
-
-## Stack Tecnológico
-
-**Frontend:** React 18+, TypeScript, Vite, Tailwind CSS, Zustand/Redux, React Router, Socket.io-client, Axios
-
-**Backend:** Node.js, Express.js, TypeScript, Prisma ORM, Socket.io, JWT, Redis
-
-**Database:** PostgreSQL, Redis
-
-**Infraestructura:** Docker, Docker Compose, GitHub Actions
-
-**Testing:** Vitest, ESLint, Prettier
-
----
-
-## Requisitos
-
-**Funcionales (28):** Gestión de usuarios y autenticación. Administración de proyectos y equipos. Creación y asignación inteligente de tareas. Registro de competencias. Notificaciones, chat integrado y auditoría. Reportes automáticos con análisis de participación y desempeño.
-
-**No-Funcionales (17):** Respuesta del sistema menor a 2 segundos. Disponibilidad 99%. Escalabilidad para 1000+ usuarios simultáneos. Compatibilidad con navegadores modernos. Diseño responsive. Seguridad con encriptación y auditoría completa. Backups automáticos diarios.
-
----
-
-## Instalación
-
-**Prerrequisitos:** Node.js 18+, Docker, Docker Compose, PostgreSQL 14+, Redis, Git
-
-**Pasos:**
+### 1. Clonar Repositorio
 
 ```bash
 git clone https://github.com/DiegooLPZ-FTp/TeamTask-.git
 cd TeamTask-
-
-# Frontend
-cd frontend && npm install
-cd ../backend && npm install
 ```
 
-Configurar variables de entorno:
+### 2. Setup Frontend
 
-**Backend** - `.env`:
-```
-DATABASE_URL=postgresql://user:password@localhost:5432/teamtask
-REDIS_URL=redis://localhost:6379
-JWT_SECRET=tu_secret_aqui
-NODE_ENV=development
-PORT=3000
-```
-
-**Frontend** - `.env`:
-```
-VITE_API_URL=http://localhost:3000
-VITE_SOCKET_URL=http://localhost:3000
-```
-
-Ejecutar:
 ```bash
+cd frontend
+npm install
+cp .env.example .env
+npm run dev
+```
+
+**Accede a:** http://localhost:3000
+
+### 3. Setup Backend
+
+```bash
+cd ../backend
+npm install
+cp .env.example .env
+npm run dev
+```
+
+**Accede a:** http://localhost:5000/api
+
+### 4. Setup Base de Datos
+
+```bash
+cd backend
+npx prisma migrate dev --name init
+npx prisma generate
+```
+
+### 5. Con Docker Compose (Recomendado)
+
+```bash
+# Desde la raíz del proyecto
 docker-compose up -d
-cd backend && npx prisma migrate deploy
-
-# Terminal 1
-cd backend && npm run dev
-
-# Terminal 2
-cd frontend && npm run dev
 ```
 
-Acceso: `http://localhost:5173`
+Esto levanta:
+- PostgreSQL en puerto 5432
+- Redis en puerto 6379
+- Backend en puerto 5000
+- Frontend en puerto 3000
 
----
+## 📚 Documentación
 
-## Uso
+- **[Setup Detallado](./docs/SETUP.md)** - Guía completa de instalación
+- **[API Reference](./docs/API.md)** - Especificación de endpoints REST
+- **[Database Schema](./docs/DATABASE.md)** - Diseño de base de datos
+- **[Architecture](./docs/ARCHITECTURE.md)** - Arquitectura del sistema
+- **[Contributing Guide](./docs/CONTRIBUTING.md)** - Guía para contribuidores
 
-1. Crear equipo: Registrarse, acceder a "Mis Equipos", crear nuevo equipo, agregar miembros
-2. Asignar tareas: Crear tarea, el sistema sugiere miembros según skills, disponibilidad y carga actual
-3. Monitorear: Dashboard con estado general, carga de trabajo por persona, reportes exportables
+## 📊 Documentación Académica
 
----
+- **[1er Parcial - Documento Completo](./docs/Team_Task_Entrega_1er_Parcial_CON_DIAGRAMAS.docx)**
+  - Casos de Uso
+  - Diagrama de Clases
+  - Modelo de Relaciones
+  - Glosario del Sistema
+  - Requisitos (28 RF + 17 RNF)
 
-## Estructura del Proyecto
+## 👥 Equipo de Desarrollo
+
+| Nombre | Rol |
+|--------|-----|
+| Diego Alberto López Montes | Developer |
+| Álvaro Gael García Ramírez | Developer |
+| Christopher Mauricio Cuevas Medina | Developer |
+| José Alexander de la Rosa | Developer |
+
+## 🎓 Información Académica
+
+- **Universidad:** Universidad Autónoma de Aguascalientes
+- **Materia:** Análisis y Diseño de Sistemas (Grupo 5-B)
+- **Profesor:** Erwin Brian Montes Chaparro
+- **Período:** Agosto - Diciembre 2026
+
+## 🤝 Contribuir
+
+Queremos tu ayuda para mejorar Team Task. Sigue estos pasos:
+
+1. **Fork** el repositorio
+2. **Crea una rama** para tu feature (`git checkout -b feature/AmazingFeature`)
+3. **Commit tus cambios** (`git commit -m 'feat: Add AmazingFeature'`)
+4. **Push a la rama** (`git push origin feature/AmazingFeature`)
+5. **Abre un Pull Request**
+
+Ver [CONTRIBUTING.md](./docs/CONTRIBUTING.md) para más detalles.
+
+### Convención de Commits
 
 ```
-TeamTask-/
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── hooks/
-│   │   ├── store/
-│   │   ├── services/
-│   │   └── styles/
-│   └── vite.config.ts
-│
-├── backend/
-│   ├── src/
-│   │   ├── controllers/
-│   │   ├── routes/
-│   │   ├── models/
-│   │   ├── middleware/
-│   │   └── services/
-│   ├── prisma/
-│   └── .env.example
-│
-├── docker-compose.yml
-└── .github/workflows/
+feat(scope): descripción       - Nueva característica
+fix(scope): descripción        - Arreglo de bug
+docs(scope): descripción       - Documentación
+style(scope): descripción      - Formato/estilos
+refactor(scope): descripción   - Refactorización
+test(scope): descripción       - Tests
+chore(scope): descripción      - Tareas generales
 ```
 
----
+## 📝 Scripts Disponibles
 
-## Equipo
-
-Diego Alberto López Montes, Álvaro Gael García Ramírez, Christopher Mauricio Cuevas Medina, José Alexander de la Rosa
-
-**Universidad:** Universidad Autónoma de Aguascalientes  
-**Curso:** Análisis y Diseño de Sistemas (Grupo 5-B)  
-**Profesor:** Erwin Brian Montes Chaparro
-
----
-
-## Seguridad
-
-Contraseñas encriptadas con bcrypt. Autenticación JWT stateless. CORS configurado. Headers de seguridad con Helmet. Rate limiting. Auditoría completa de acciones. Validación automática de datos.
-
----
-
-## Testing
-
+### Root Level
 ```bash
-npm run test
-npm run test:coverage
-npm run test:watch
+npm run setup        # Instala todas las dependencias
+npm run dev          # Inicia frontend y backend simultáneamente
+npm run build        # Construye frontend y backend
+npm run test         # Ejecuta tests en ambos
+npm run docker       # Levanta los contenedores
+npm run docker-down  # Para los contenedores
 ```
 
+### Backend
+```bash
+npm run dev          # Servidor en desarrollo
+npm run build        # Build para producción
+npm run start        # Ejecutar servidor
+npm run test         # Tests con Vitest
+npm run lint         # Verificar código con ESLint
+npm run migrate      # Ejecutar migraciones Prisma
+npm run seed         # Poblar base de datos (si existe)
+```
+
+### Frontend
+```bash
+npm run dev          # Servidor Vite en desarrollo
+npm run build        # Build optimizado
+npm run preview      # Preview del build
+npm run test         # Tests con Vitest
+npm run lint         # Verificar código
+```
+
+## 🐛 Reportar Bugs
+
+Encontraste un bug? Por favor abre un [issue](https://github.com/DiegooLPZ-FTp/TeamTask-/issues/new?template=bug.md) con:
+- Descripción clara del problema
+- Pasos para reproducir
+- Comportamiento esperado
+- Comportamiento actual
+- Sistema operativo y versión
+
+## 💡 Sugerir Features
+
+Tienes una idea? Abre un [issue](https://github.com/DiegooLPZ-FTp/TeamTask-/issues/new?template=feature.md) con:
+- Descripción de la feature
+- Justificación
+- Beneficios
+- Ejemplos de uso
+
+## 📄 Licencia
+
+Este proyecto está bajo la licencia **MIT**. Ver [LICENSE](./LICENSE) para más detalles.
+
+## 📞 Contacto
+
+¿Preguntas o sugerencias?
+- Abre un [issue](https://github.com/DiegooLPZ-FTp/TeamTask-/issues)
+- Contacta al equipo en los issues
+- Revisa [Discussions](https://github.com/DiegooLPZ-FTp/TeamTask-/discussions)
+
 ---
 
-## Contribuciones
+<div align="center">
 
-Fork el proyecto. Crear rama para feature. Commit cambios. Push. Abrir Pull Request.
+**Estado del Proyecto**
 
----
+| Fase | Estado | Fecha |
+|------|--------|-------|
+| 1er Parcial | ✅ Completado | Sept 2026 |
+| 2do Parcial | 🚧 En Desarrollo | Oct 2026 |
+| 3er Parcial | 📋 Planeado | Nov 2026 |
+| 4to Parcial | 📋 Planeado | Dic 2026 |
 
-## Licencia
+Última actualización: **15 de Septiembre de 2026**
 
-MIT
-
----
-
-## Soporte
-
-Crear issue en: https://github.com/DiegooLPZ-FTp/TeamTask-/issues
-
+</div>
