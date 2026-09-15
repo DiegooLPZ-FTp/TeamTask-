@@ -1,102 +1,193 @@
-# Team Task — Resumen del proyecto
+# Team Task
 
-**Team Task** es una plataforma para gestionar el trabajo colaborativo de equipos, enfocada principalmente en **estudiantes, startups y PyMEs**.
+Sistema de Gestión Colaborativa de Tareas para Equipos
 
-## Problema que busca resolver
+---
 
-En los equipos de trabajo es común que las tareas se distribuyan de manera desigual, que no se aprovechen correctamente las habilidades de cada integrante y que exista poca visibilidad sobre quién está cumpliendo con sus responsabilidades.
+## Descripción
 
-Esto puede provocar:
-- Sobrecarga de algunos integrantes.
-- Falta de organización.
-- Tareas olvidadas o entregadas tarde.
-- Mala comunicación.
-- Poca claridad sobre la participación individual.
-- Dificultad para medir el trabajo realizado.
+Team Task es una plataforma diseñada para equipos universitarios, emprendimientos y pequeñas empresas que necesitan organizar, distribuir y medir el trabajo de forma equitativa.
 
-## Solución
+**Concepto Principal:**
 
-Team Task permite **organizar, distribuir, calendarizar y medir las tareas de un equipo**, buscando que la carga de trabajo sea equilibrada y que las actividades puedan asignarse considerando las **habilidades, capacidades y disponibilidad de cada integrante**.
+> Equidad ≠ Igualdad
+> 
+> Distribuir trabajo considerando habilidades, complejidad y disponibilidad de cada miembro.
 
-El sistema debe permitir:
+---
 
-- Crear equipos y proyectos.
-- Registrar integrantes y sus habilidades.
-- Crear y asignar tareas.
-- Establecer prioridades y fechas límite.
-- Calendarizar actividades.
-- Enviar notificaciones y recordatorios.
-- Registrar avances y tareas completadas.
-- Medir la participación de cada integrante mediante porcentajes.
-- Medir el porcentaje de cumplimiento.
-- Detectar posibles desequilibrios en la carga de trabajo.
-- Generar reportes diarios y semanales.
-- Visualizar el progreso general del equipo.
+## Componentes del Sistema
 
-## Concepto central
+El sistema se estructura en cinco pilares fundamentales:
 
-La idea no es simplemente que todos hagan la misma cantidad de tareas.
+1. **Asignar** - Distribución inteligente de tareas considerando competencias disponibles
+2. **Calendarizar** - Programación flexible con deadlines definidos
+3. **Notificar** - Alertas en tiempo real (máximo 5 segundos)
+4. **Medir** - Métricas detalladas de participación
+5. **Reportar** - Análisis exportables a PDF y Excel
 
-**Equidad ≠ igualdad.**
+---
 
-Team Task busca distribuir el trabajo de manera equilibrada considerando factores como:
-- Habilidades.
-- Complejidad de las tareas.
-- Tiempo disponible.
-- Cantidad de actividades.
-- Responsabilidades de cada integrante.
+## Funcionalidades
 
-El objetivo es aprovechar las fortalezas individuales para mejorar el funcionamiento del equipo.
+- Asignación inteligente de tareas basada en skills y disponibilidad
+- Gestión de proyectos colaborativa en tiempo real
+- Registro y monitoreo de competencias por miembro
+- Notificaciones instantáneas y chat integrado
+- Análisis de carga de trabajo y balance de equipo
+- Reportes automáticos (diarios y semanales)
+- Auditoría completa de cambios
+- Interfaz responsive para web y dispositivos móviles
 
-## Público objetivo
+---
 
-### 1. Estudiantes universitarios
-Equipos que realizan proyectos, investigaciones, exposiciones, trabajos y actividades académicas.
+## Stack Tecnológico
 
-### 2. Estudiantes de preparatoria
-Equipos que necesitan organizar proyectos y trabajos colaborativos.
+**Frontend:** React 18+, TypeScript, Vite, Tailwind CSS, Zustand/Redux, React Router, Socket.io-client, Axios
 
-### 3. Startups y PyMEs
-Equipos pequeños que necesitan distribuir responsabilidades, coordinar proyectos y medir el cumplimiento de sus integrantes.
+**Backend:** Node.js, Express.js, TypeScript, Prisma ORM, Socket.io, JWT, Redis
 
-**Usuario principal:** integrante o líder del equipo.
+**Database:** PostgreSQL, Redis
 
-**Usuarios secundarios:** profesores, coordinadores, supervisores o administradores.
+**Infraestructura:** Docker, Docker Compose, GitHub Actions
 
-## Ejemplo de funcionamiento
+**Testing:** Vitest, ESLint, Prettier
 
-Un equipo de cinco estudiantes crea un proyecto.
+---
 
-Cada integrante registra sus habilidades y disponibilidad. El líder crea las tareas y el sistema ayuda a distribuirlas considerando las características de cada persona.
+## Requisitos
 
-Durante el proyecto, Team Task muestra métricas como:
+**Funcionales (28):** Gestión de usuarios y autenticación. Administración de proyectos y equipos. Creación y asignación inteligente de tareas. Registro de competencias. Notificaciones, chat integrado y auditoría. Reportes automáticos con análisis de participación y desempeño.
 
-- Diego — 25% de carga / 95% de cumplimiento.
-- Ana — 20% de carga / 100% de cumplimiento.
-- Luis — 22% de carga / 85% de cumplimiento.
-- Sofía — 18% de carga / 90% de cumplimiento.
-- Carlos — 15% de carga / 70% de cumplimiento.
+**No-Funcionales (17):** Respuesta del sistema menor a 2 segundos. Disponibilidad 99%. Escalabilidad para 1000+ usuarios simultáneos. Compatibilidad con navegadores modernos. Diseño responsive. Seguridad con encriptación y auditoría completa. Backups automáticos diarios.
 
-El sistema también puede mostrar tareas pendientes, atrasadas y próximas a vencer, además de generar reportes.
+---
 
-## Propuesta de valor
+## Instalación
 
-> **Team Task ayuda a los equipos a organizar y distribuir sus tareas de manera equilibrada, aprovechando las habilidades de cada integrante y convirtiendo su participación y cumplimiento en información medible.**
+**Prerrequisitos:** Node.js 18+, Docker, Docker Compose, PostgreSQL 14+, Redis, Git
 
-## Pilares del producto
+**Pasos:**
 
-**Asignar → Calendarizar → Notificar → Medir → Reportar**
+```bash
+git clone https://github.com/DiegooLPZ-FTp/TeamTask-.git
+cd TeamTask-
 
-## Identidad
+# Frontend
+cd frontend && npm install
+cd ../backend && npm install
+```
 
-La marca debe transmitir:
+Configurar variables de entorno:
 
-- Trabajo en equipo.
-- Equidad.
-- Organización.
-- Productividad.
-- Medición.
-- Compromiso.
-- Tecnología.
+**Backend** - `.env`:
+```
+DATABASE_URL=postgresql://user:password@localhost:5432/teamtask
+REDIS_URL=redis://localhost:6379
+JWT_SECRET=tu_secret_aqui
+NODE_ENV=development
+PORT=3000
+```
 
-El diseño debe ser moderno, sencillo y atractivo tanto para estudiantes como para equipos profesionales.
+**Frontend** - `.env`:
+```
+VITE_API_URL=http://localhost:3000
+VITE_SOCKET_URL=http://localhost:3000
+```
+
+Ejecutar:
+```bash
+docker-compose up -d
+cd backend && npx prisma migrate deploy
+
+# Terminal 1
+cd backend && npm run dev
+
+# Terminal 2
+cd frontend && npm run dev
+```
+
+Acceso: `http://localhost:5173`
+
+---
+
+## Uso
+
+1. Crear equipo: Registrarse, acceder a "Mis Equipos", crear nuevo equipo, agregar miembros
+2. Asignar tareas: Crear tarea, el sistema sugiere miembros según skills, disponibilidad y carga actual
+3. Monitorear: Dashboard con estado general, carga de trabajo por persona, reportes exportables
+
+---
+
+## Estructura del Proyecto
+
+```
+TeamTask-/
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── hooks/
+│   │   ├── store/
+│   │   ├── services/
+│   │   └── styles/
+│   └── vite.config.ts
+│
+├── backend/
+│   ├── src/
+│   │   ├── controllers/
+│   │   ├── routes/
+│   │   ├── models/
+│   │   ├── middleware/
+│   │   └── services/
+│   ├── prisma/
+│   └── .env.example
+│
+├── docker-compose.yml
+└── .github/workflows/
+```
+
+---
+
+## Equipo
+
+Diego Alberto López Montes, Álvaro Gael García Ramírez, Christopher Mauricio Cuevas Medina, José Alexander de la Rosa
+
+**Universidad:** Universidad Autónoma de Aguascalientes  
+**Curso:** Análisis y Diseño de Sistemas (Grupo 5-B)  
+**Profesor:** Erwin Brian Montes Chaparro
+
+---
+
+## Seguridad
+
+Contraseñas encriptadas con bcrypt. Autenticación JWT stateless. CORS configurado. Headers de seguridad con Helmet. Rate limiting. Auditoría completa de acciones. Validación automática de datos.
+
+---
+
+## Testing
+
+```bash
+npm run test
+npm run test:coverage
+npm run test:watch
+```
+
+---
+
+## Contribuciones
+
+Fork el proyecto. Crear rama para feature. Commit cambios. Push. Abrir Pull Request.
+
+---
+
+## Licencia
+
+MIT
+
+---
+
+## Soporte
+
+Crear issue en: https://github.com/DiegooLPZ-FTp/TeamTask-/issues
+
