@@ -1,0 +1,96 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: teamtask-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: teamtask_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - teamtask-network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: teamtask-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - teamtask-network
+
+  # Backend API
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: teamtask-backend
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/teamtask_dev
+      REDIS_URL: redis://redis:6379
+      NODE_ENV: development
+      PORT: 5000
+      JWT_SECRET: development_secret_key_change_in_production
+      SOCKET_IO_ORIGIN: http://localhost:3000
+    ports:
+      - "5000:5000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ../backend/src:/app/src
+      - ../backend/node_modules:/app/node_modules
+    networks:
+      - teamtask-network
+    command: npm run dev
+
+  # Frontend React
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    container_name: teamtask-frontend
+    environment:
+      VITE_API_URL: http://localhost:5000/api
+      VITE_SOCKET_URL: http://localhost:5000
+      VITE_ENV: development
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    volumes:
+      - ../frontend/src:/app/src
+      - ../frontend/node_modules:/app/node_modules
+    networks:
+      - teamtask-network
+    command: npm run dev
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  teamtask-network:
+    driver: bridge
