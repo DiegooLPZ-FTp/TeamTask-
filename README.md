@@ -229,6 +229,13 @@ Este proyecto está bajo la licencia **MIT**. Ver [LICENSE](./LICENSE) para más
 | 3er Parcial | 📋 Planeado | Nov 2026 |
 | 4to Parcial | 📋 Planeado | Dic 2026 |
 
-Última actualización: **15 de Septiembre de 2026**
+Última actualización: **15 de Septiembre de 2026** -VS Code Test
 
 </div>
+
+
+## ✅ Configuración de VS Code Completada
+
+- Cuenta GitHub conectada correctamente
+- Git configurado con usuario y email
+- Listo para comenzar desarrollo
